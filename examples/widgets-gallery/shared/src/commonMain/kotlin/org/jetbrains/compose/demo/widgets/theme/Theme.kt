@@ -1,8 +1,8 @@
 package org.jetbrains.compose.demo.widgets.theme
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme as darkColors
+import androidx.compose.material3.lightColorScheme as lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,8 +11,8 @@ import org.jetbrains.compose.demo.widgets.theme.ColorPallet.*
 // dark palettes
 private val DarkGreenColorPalette = darkColors(
     primary = green200,
-    primaryVariant = green700,
-    secondary = teal200,
+    secondary = green700,
+    tertiary = teal200,
     background = Color.Black,
     surface = Color.Black,
     onPrimary = Color.Black,
@@ -24,8 +24,8 @@ private val DarkGreenColorPalette = darkColors(
 
 private val DarkPurpleColorPalette = darkColors(
     primary = purple200,
-    primaryVariant = purple700,
-    secondary = teal200,
+    secondary = purple700,
+    tertiary = teal200,
     background = Color.Black,
     surface = Color.Black,
     onPrimary = Color.Black,
@@ -37,8 +37,8 @@ private val DarkPurpleColorPalette = darkColors(
 
 private val DarkBlueColorPalette = darkColors(
     primary = blue200,
-    primaryVariant = blue700,
-    secondary = teal200,
+    secondary = blue700,
+    tertiary = teal200,
     background = Color.Black,
     surface = Color.Black,
     onPrimary = Color.Black,
@@ -50,8 +50,8 @@ private val DarkBlueColorPalette = darkColors(
 
 private val DarkOrangeColorPalette = darkColors(
     primary = orange200,
-    primaryVariant = orange700,
-    secondary = teal200,
+    secondary = orange700,
+    tertiary = teal200,
     background = Color.Black,
     surface = Color.Black,
     onPrimary = Color.Black,
@@ -64,8 +64,8 @@ private val DarkOrangeColorPalette = darkColors(
 // Light pallets
 private val LightGreenColorPalette = lightColors(
     primary = green500,
-    primaryVariant = green700,
-    secondary = teal200,
+    secondary = green700,
+    tertiary = teal200,
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
@@ -76,8 +76,8 @@ private val LightGreenColorPalette = lightColors(
 
 private val LightPurpleColorPalette = lightColors(
     primary = purple,
-    primaryVariant = purple700,
-    secondary = teal200,
+    secondary = purple700,
+    tertiary = teal200,
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
@@ -88,8 +88,8 @@ private val LightPurpleColorPalette = lightColors(
 
 private val LightBlueColorPalette = lightColors(
     primary = blue500,
-    primaryVariant = blue700,
-    secondary = teal200,
+    secondary = blue700,
+    tertiary = teal200,
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
@@ -100,8 +100,8 @@ private val LightBlueColorPalette = lightColors(
 
 private val LightOrangeColorPalette = lightColors(
     primary = orange500,
-    primaryVariant = orange700,
-    secondary = teal200,
+    secondary = orange700,
+    tertiary = teal200,
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
@@ -117,7 +117,7 @@ enum class ColorPallet {
 @Composable
 fun WidgetGalleryTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    colorPallet: ColorPallet = GREEN,
+    colorPallet: ColorPallet = BLUE,
     content: @Composable() () -> Unit,
 ) {
     val colors = when (colorPallet) {
@@ -128,7 +128,7 @@ fun WidgetGalleryTheme(
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = typography,
         shapes = shapes,
         content = content

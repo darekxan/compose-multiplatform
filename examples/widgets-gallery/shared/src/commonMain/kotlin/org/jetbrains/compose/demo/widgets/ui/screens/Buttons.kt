@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,7 +39,7 @@ fun Buttons() {
         Button(
             onClick = {},
             modifier = Modifier.padding(8.dp),
-            elevation = ButtonDefaults.elevation()
+            elevation = ButtonDefaults.buttonElevation()
         ) {
             Text(text = "Flat")
         }
@@ -68,8 +68,8 @@ fun Buttons() {
             contentColor = purple200,
         )
         val mainButtonColor = ButtonDefaults.buttonColors(
-            backgroundColor = purple,
-            contentColor = MaterialTheme.colors.surface
+            containerColor = purple,
+            contentColor = MaterialTheme.colorScheme.surface
         )
         OutlinedButton(
             colors = outlineButtonColor,
@@ -83,25 +83,25 @@ fun Buttons() {
         }
 
         val horizontalGradient = Brush.horizontalGradient(
-            colors = listOf(MaterialTheme.colors.primary, MaterialTheme.colors.primaryVariant),
+            colors = listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.secondary),
             0f,
             250f
         )
         val verticalGradient = Brush.verticalGradient(
-            colors = listOf(MaterialTheme.colors.primary, MaterialTheme.colors.primaryVariant),
+            colors = listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.secondary),
             startY = 0f,
             endY = 100f
         )
         Text(
             text = "Horizontal gradient",
-            style = typography.body2.copy(color = Color.White),
+            style = typography.bodyMedium.copy(color = Color.White),
             modifier = Modifier.padding(12.dp).clickable(onClick = {})
                 .clip(RoundedCornerShape(4.dp))
                 .background(brush = horizontalGradient).padding(12.dp)
         )
         Text(
             text = "Vertical gradient",
-            style = typography.body1.copy(color = Color.White),
+            style = typography.bodyLarge.copy(color = Color.White),
             modifier = Modifier.padding(12.dp).clickable(onClick = {})
                 .clip(RoundedCornerShape(4.dp))
                 .background(brush = verticalGradient).padding(12.dp)

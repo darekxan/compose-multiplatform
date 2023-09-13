@@ -8,23 +8,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.outlined.ReadMore
-import androidx.compose.material.icons.filled.MoreHoriz
-import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material.icons.outlined.CleanHands
+import androidx.compose.material.icons.automirrored.outlined.List
+import androidx.compose.material.icons.automirrored.outlined.Send
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.LibraryMusic
+import androidx.compose.material.icons.outlined.MailOutline
 import androidx.compose.material.icons.outlined.Search
+
+import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,28 +55,27 @@ fun AppBars() {
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun TopAppBarsDemo() {
     SubtitleText(subtitle = "Top App bar")
 
     TopAppBar(
         title = { Text(text = "Home") },
-        elevation = 8.dp,
         navigationIcon = {
             IconButton(onClick = {}) {
                 Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = "ArrowBack")
             }
-        }
+        },
     )
 
     Spacer(modifier = Modifier.height(8.dp))
 
     TopAppBar(
         title = { Text(text = "Instagram") },
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
-        elevation = 8.dp,
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors( // Set colors for M3
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
         navigationIcon = {
             IconButton(onClick = {}) {
                 Icon(painterResource(Res.drawable.ic_instagram), contentDescription = "Instagram")
@@ -102,22 +99,26 @@ private fun TopAppBarsDemo() {
                 modifier = Modifier.fillMaxWidth()
             )
         },
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
-        elevation = 8.dp,
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors( // Set colors for M3
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
         navigationIcon = {
             Image(
                 painterResource(Res.drawable.p6),
                 contentDescription = "",
-                modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-                    .requiredSize(32.dp).clip(CircleShape)
+                modifier =
+                    Modifier
+                        .padding(vertical = 4.dp, horizontal = 8.dp)
+                        .requiredSize(32.dp)
+                        .clip(CircleShape),
             )
         },
         actions = {
             Icon(
-                Icons.Default.StarBorder,
+                Icons.Default.Star,
                 contentDescription = "",
-                modifier = Modifier.padding(horizontal = 8.dp)
+                modifier = Modifier.padding(horizontal = 8.dp),
             )
         }
     )
@@ -130,10 +131,11 @@ private fun BottomAppBarDemo() {
     SubtitleText("Bottom app bars: Note bottom app bar support FAB cutouts when used with scaffolds see demoUI crypto app")
 
     BottomAppBar(
-        cutoutShape = CircleShape
+        // no cutouts in M3
+//        cutoutShape = CircleShape
     ) {
         IconButton(onClick = {}) {
-            Icon(Icons.Default.MoreHoriz, contentDescription = "")
+            Icon(Icons.Default.MoreVert, contentDescription = "")
         }
         TitleText(title = "Bottom App Bar")
     }
@@ -145,42 +147,42 @@ private fun NavigationBarDemo() {
     Spacer(modifier = Modifier.height(16.dp))
     SubtitleText(subtitle = "Bottom Navigation Bars")
     val navItemState = remember { mutableStateOf(NavType.HOME) }
-    BottomNavigation(backgroundColor = MaterialTheme.colors.surface) {
-        BottomNavigationItem(
+    NavigationBar {
+        NavigationBarItem(
             icon = { Icon(Icons.Outlined.Home, contentDescription = "Home") },
             selected = navItemState.value == NavType.HOME,
             onClick = { navItemState.value = NavType.HOME },
             label = { Text(text = stringResource(Res.string.spotify_nav_home)) },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             icon = { Icon(Icons.Outlined.Search, contentDescription = "Search") },
             selected = navItemState.value == NavType.SEARCH,
             onClick = { navItemState.value = NavType.SEARCH },
-            label = { Text(text = stringResource(Res.string.spotify_nav_search)) }
+            label = { Text(text = stringResource(Res.string.spotify_nav_search)) },
         )
-        BottomNavigationItem(
-            icon = { Icon(Icons.Outlined.LibraryMusic, contentDescription = "LibraryMusic") },
+        NavigationBarItem(
+            icon = { Icon(Icons.Outlined.MailOutline, contentDescription = "LibraryMusic") },
             selected = navItemState.value == NavType.LIBRARY,
             onClick = { navItemState.value = NavType.LIBRARY },
-            label = { Text(text = stringResource(Res.string.spotify_nav_library)) }
+            label = { Text(text = stringResource(Res.string.spotify_nav_library)) },
         )
     }
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    BottomNavigation {
-        BottomNavigationItem(
-            icon = { Icon(Icons.AutoMirrored.Outlined.ReadMore, contentDescription = "ReadMore") },
+    NavigationBar {
+        NavigationBarItem(
+            icon = { Icon(Icons.AutoMirrored.Outlined.List, contentDescription = "ReadMore") },
             selected = navItemState.value == NavType.HOME,
             onClick = { navItemState.value = NavType.HOME },
         )
-        BottomNavigationItem(
+        NavigationBarItem(
             icon = { Icon(Icons.Outlined.Search, contentDescription = "Search") },
             selected = navItemState.value == NavType.SEARCH,
             onClick = { navItemState.value = NavType.SEARCH },
         )
-        BottomNavigationItem(
-            icon = { Icon(Icons.Outlined.CleanHands, contentDescription = "CleanHands") },
+        NavigationBarItem(
+            icon = { Icon(Icons.AutoMirrored.Outlined.Send, contentDescription = "CleanHands") },
             selected = navItemState.value == NavType.LIBRARY,
             onClick = { navItemState.value = NavType.LIBRARY },
         )
@@ -188,5 +190,7 @@ private fun NavigationBarDemo() {
 }
 
 private enum class NavType {
-    HOME, SEARCH, LIBRARY
+    HOME,
+    SEARCH,
+    LIBRARY
 }

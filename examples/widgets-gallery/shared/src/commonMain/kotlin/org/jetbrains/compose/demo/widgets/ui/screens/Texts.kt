@@ -2,7 +2,7 @@ package org.jetbrains.compose.demo.widgets.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -23,17 +23,17 @@ fun TextViews() {
         Text(text = "Plain", modifier = textModifier)
         Text(
             text = "Medium Bold",
-            style = typography.body1.copy(fontWeight = FontWeight.Medium),
+            style = typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
             modifier = textModifier
         )
         Text(
             text = "Bold",
-            style = typography.body1.copy(fontWeight = FontWeight.Bold),
+            style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
             modifier = textModifier
         )
         Text(
             text = "Extra Bold",
-            style = typography.body1.copy(fontWeight = FontWeight.Bold),
+            style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
             modifier = textModifier
         )
 

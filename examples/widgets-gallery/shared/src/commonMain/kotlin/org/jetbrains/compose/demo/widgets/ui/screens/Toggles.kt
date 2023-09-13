@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +26,6 @@ fun Toggles() {
         var switched by remember { mutableStateOf(true) }
         Switch(
             checked = switched,
-            colors = SwitchDefaults.colors(checkedThumbColor = MaterialTheme.colors.primary),
             modifier = Modifier.padding(8.dp),
             onCheckedChange = { switched = it }
         )
@@ -55,7 +54,7 @@ fun Toggles() {
         Slider(value = sliderState2, modifier = Modifier.fillMaxWidth().padding(8.dp),
             valueRange = 0f..100f,
             steps = 5,
-            colors = SliderDefaults.colors(thumbColor = MaterialTheme.colors.secondary),
+            colors = SliderDefaults.colors(thumbColor = MaterialTheme.colorScheme.tertiary),
             onValueChange = { newValue ->
                 sliderState2 = newValue
             }
